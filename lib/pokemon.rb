@@ -2,7 +2,7 @@ class Pokemon
     # saving, adding, removing, or changing
     attr_accessor :id, :name, :type, :db 
 
-    def initialize(id: nil, name:, type:, db:)
+    def initialize(name:, type:, db:, id: nil)
         @id = id
         @name = name
         @type = type 
@@ -14,7 +14,6 @@ class Pokemon
             INSERT INTO pokemon (name, type)
             VALUES (?, ?)
         SQL
-
         db.execute(sql, name, type)
         @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
     end 
